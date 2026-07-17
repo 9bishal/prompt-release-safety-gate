@@ -103,7 +103,7 @@ prompt-release-safety-gate/
 ## Setup
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/9bishal/prompt-release-safety-gate.git
 cd prompt-release-safety-gate
 python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
