@@ -1,0 +1,65 @@
+[
+  {
+    "id": "refund-01",
+    "category": "refund_policy",
+    "question": "Can I get a refund if I bought this 45 days ago?",
+    "expected_reference": "No refund after 30 days; the 45-day-old purchase does not qualify. No store credit either since store credit only applies between 15-30 days.",
+    "expects_json": false
+  },
+  {
+    "id": "refund-02",
+    "category": "refund_policy",
+    "question": "I opened the item 20 days ago, what can I get back?",
+    "expected_reference": "Opened item within 15-30 days qualifies for store credit only, not a full refund.",
+    "expects_json": false
+  },
+  {
+    "id": "refund-03",
+    "category": "refund_policy",
+    "question": "I bought this yesterday and have my receipt, can I return it?",
+    "expected_reference": "Yes, full refund is available within 30 days of purchase with a receipt.",
+    "expects_json": false
+  },
+  {
+    "id": "shipping-01",
+    "category": "shipping",
+    "question": "How long does standard shipping take?",
+    "expected_reference": "Standard shipping takes 5-7 business days.",
+    "expects_json": false
+  },
+  {
+    "id": "shipping-02",
+    "category": "shipping",
+    "question": "If I pay extra can I get it faster?",
+    "expected_reference": "Yes, express shipping takes 1-2 business days for an additional fee.",
+    "expects_json": false
+  },
+  {
+    "id": "billing-01",
+    "category": "billing",
+    "question": "When does my card actually get charged, when I order or when it ships?",
+    "expected_reference": "Customers are charged at time of shipment, not at time of order.",
+    "expects_json": false
+  },
+  {
+    "id": "billing-02",
+    "category": "billing",
+    "question": "My payment failed, will it try again automatically?",
+    "expected_reference": "Yes, failed payments retry automatically 3 times over 5 days.",
+    "expects_json": false
+  },
+  {
+    "id": "out-of-scope-01",
+    "category": "out_of_scope",
+    "question": "Can I use my store credit at your physical retail locations too?",
+    "expected_reference": "The policy text does not mention physical retail locations, so the assistant should say it doesn't have that information and offer to escalate.",
+    "expects_json": false
+  },
+  {
+    "id": "out-of-scope-02",
+    "category": "out_of_scope",
+    "question": "Do you offer price matching with competitors?",
+    "expected_reference": "The policy text does not cover price matching, so the assistant should say it doesn't have that information and offer to escalate.",
+    "expects_json": false
+  }
+]

@@ -1,0 +1,46 @@
+name: Prompt Release Safety Gate
+
+on:
+  pull_request:
+    paths:
+      - "prompts/**"
+      - "golden_dataset/**"
+
+jobs:
+  prompt-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Prompt Release Safety Gate
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python scripts/run_gate_cli.py --old prompts/old_prompt.txt --new prompts/new_prompt.txt
+        continue-on-error: true
+        id: gate
+
+      - name: Post gate report as PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('reports/gate_report.md', 'utf8');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: report,
+            });
+
+      - name: Fail the job if the gate failed
+        if: steps.gate.outcome == 'failure'
+        run: exit 1
